@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("img/bj.jpg") fixed center;
+    font-size: 16px;
+}
+
+.register_layout {
+    width: 900px;
+    height: 500px;
+    border: 8px solid #EEEEEE;
+    background: white;
+    margin: 50px auto auto;
+}
+
+.rg_left {
+    float: left;
+    margin: 15px
+}
+
+.rg_left > p:first-child {
+    color: #ffd026;
+    font-size: 25px;
+}
+
+.rg_left > p:last-child {
+    color: #a6a6a6;
+    font-size: 20px;
+}
+
+.rg_center {
+    float: left;
+    width: 500px;
+    margin-left: 30px;
+}
+
+.rg_right {
+    float: right;
+    margin: 15px;
+    font-size: 15px;
+
+}
+
+.rg_right p a:link {
+    color: coral;
+}
+
+.td_left {
+    width: 100px;
+    text-align: right;
+    height: 40px;
+}
+
+.td_right {
+    width: 500px;
+    padding-left: 50px;
+}
+
+input[type=text],input[type=password] {
+    width: 250px;
+    height: 30px;
+    border: 1px solid #a6a6a6;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+input[type=submit] {
+    margin-top: 20px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid #ffd026;
+    background-color: #ffd026;
+}
+
+.error {
+    color: red;
+    font_size: 12px;
+}

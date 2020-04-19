@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link type="text/css" rel="stylesheet" href="CSSregister.css">
+
+    <script>
+        /*
+        分析:
+            1.给表单绑定onsubmit事件。监听器中判断每一个方法校验的结果。
+                如果都为true,则监听器方法返回true
+                如果有一个为false,则监听器方法返回false
+            2.定义一些方法分别校验各个表单项。
+            3.给各个表单项绑定onblur事件。
+*/
+
+        window.onload = function () {
+            //给表单绑定onsubmit事件
+            document.getElementsByTagName("form")[0].onsubmit = function () {
+                //调用用户名校验方法
+                //调用密码校验方法
+
+                return checkUsername() && checkPassword();
+            };
+
+            document.getElementById("username").onblur = function () {
+                checkUsername();
+            };
+
+            document.getElementById("password").onblur = function () {
+                checkPassword();
+            };
+
+            //1.获取图片对象
+            var img = document.getElementById("checkCode");
+            //2.绑定单击事件
+            img.onclick = function () {
+                //加时间戳
+                var date = new Date().getTime();
+                img.src = "/Servlet_Learning_war_exploded/checkCodeServlet?"+date;
+            };
+
+            var a = document.getElementById("change")
+            a.onclick = function () {
+                var date = new Date().getTime();
+                img.src = "/Servlet_Learning_war_exploded/checkCodeServlet?"+date;
+            };
+        };
+
+        function checkUsername() {
+            //1.获取用户名的值
+            var username = document.getElementById("username").value;
+            //2.定义正则表达式
+            var reg_username = /^\w{6,12}$/;
+            //3.判断输入的用户名是否符合正则规则
+            var flag = reg_username.test(username);
+            //4.获取
+            var check_Username = document.getElementById("check_Username");
+            if (flag) {
+                check_Username.innerHTML = "<img width='35' height='25' src='img/gou.png' alt='用户名验证正确'>";
+            } else {
+                check_Username.innerHTML = "用户名格式错误";
+            }
+            return flag;
+        }
+
+        function checkPassword() {
+            //1.获取密码的值
+            var password = document.getElementById("password").value;
+            //2.定义正则表达式
+            var reg_password = /^\w{6,12}$/;
+            //3.判断输入的密码是否符合正则规则
+            var flag = reg_password.test(password);
+            //4.获取
+            var check_Password = document.getElementById("check_Password");
+            if (flag) {
+                check_Password.innerHTML = "<img width='35' height='25' src='img/gou.png' alt='密码验证正确'>";
+            } else {
+                check_Password.innerHTML = "密码格式错误";
+            }
+            return flag;
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div class="register_layout">
+    <div class="rg_left">
+        <p>新用户注册</p>
+        <p>USER REGISTER</p>
+    </div>
+
+    <div class="rg_center">
+        <form action="#" method="get">
+            <table>
+                <tr>
+                    <td class="td_left"><label for="username">用户名</label></td>
+                    <td class="td_right"><input type="text" name="username" id="username" placeholder="请输入用户名">
+                        <span id="check_Username" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td_left"><label for="password">密码</label></td>
+                    <td class="td_right"><input type="password" name="password" id="password" placeholder="请输入密码">
+                        <span id="check_Password" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td_left"><label for="name">姓名</label></td>
+                    <td class="td_right"><input type="text" name="name" id="name" placeholder="请输入姓名"></td>
+                </tr>
+                <tr>
+                    <td class="td_left"><label for="check">验证码</label></td>
+                    <td class="td_right"><input type="text" name="name" id="check" placeholder="请输入验证码">
+                        <span><img id="checkCode" src="/Servlet_Learning_war_exploded/checkCodeServlet" alt="验证码图片"/></span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" align="center"><input type="submit" value="注册"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="rg_right">
+        <p>已有账号？<a href="#">立即登陆</a></p>
+    </div>
+
+</div>
+
+</body>
+</html>
